@@ -1,11 +1,11 @@
-package adventofcode
+package utils
 
 import (
 	"os"
 	"testing"
 )
 
-func TestReadInput(t *testing.T) {
+func TestReadPipe(t *testing.T) {
 	tests := []struct {
 		name     string
 		input    string
@@ -41,7 +41,10 @@ func TestReadInput(t *testing.T) {
 			w.Close()
 			os.Stdin = r
 
-			result := ReadInput()
+			result, e := ReadPipe()
+			if e != nil {
+				t.Errorf("Error reading pipe: %s", e)
+			}
 
 			if len(result) != len(tt.expected) {
 				t.Errorf("Expected %d lines, got %d", len(tt.expected), len(result))

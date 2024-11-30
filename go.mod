@@ -1,3 +1,3 @@
-module github.com/radikalliberal/advent-of-code
+module adventofcode
 
 go 1.23.2
