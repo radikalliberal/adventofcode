@@ -15,6 +15,7 @@ fi
 
 # Pad the day number with a leading zero if necessary
 DAY=$(printf "%02d" "$1")
+PREV_DAY=$(printf "%02d" "$((DAY-1))")
 
 # Create the directory
 DIR="day${DAY}"
@@ -25,50 +26,55 @@ cat <<EOL > "${DIR}/day${DAY}_test.go"
 // day${DAY}_test.go
 package day${DAY}
 
-import "testing"
+import (
+    "testing"
+    "adventofcode/utils"
+)
 
 func TestPart1(t *testing.T) {
-	tests := []struct {
-		name    string
-		input []string
-		expected int
-	}{
-		{
-			name:	 "2 lines 1 number",
-			input:    []string{"Example 1", "Example 2"},
-			expected: 33,
-		},
-	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			result := Part1(tt.input)
-			if result != tt.expected {
-				t.Errorf("Expected %d, got %d", tt.expected, result)
-			}
-		})
-	}
+    ex1, _ := utils.ReadFile("test1.txt")
+    tests := []struct {
+        name    string
+        input []string
+        expected int
+    }{
+        {
+            name:     "part 1 example",
+            input:     ex1,
+            expected: 1,
+        },
+    }
+    for _, tt := range tests {
+        t.Run(tt.name, func(t *testing.T) {
+            result := Part1(tt.input)
+            if result != tt.expected {
+                t.Errorf("Expected %d, got %d", tt.expected, result)
+            }
+        })
+    }
 }
 
 func TestPart2(t *testing.T) {
-	tests := []struct {
-		name    string
-		input []string
-		expected int
-	}{
-		{
-			name:	 "2 lines 1 number",
-			input:    []string{"Example 1", "Example 2"},
-			expected: 33,
-		},
-	}
+    ex2, _ := utils.ReadFile("test2.txt")
+    tests := []struct {
+        name    string
+        input []string
+        expected int
+    }{
+        {
+            name:     "part 2 example",
+            input:    ex2,
+            expected: 1,
+        },
+    }
     for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			result := Part2(tt.input)
-			if result != tt.expected {
-				t.Errorf("Expected %d, got %d", tt.expected, result)
-			}
-		})
-	}
+        t.Run(tt.name, func(t *testing.T) {
+            result := Part2(tt.input)
+            if result != tt.expected {
+                t.Errorf("Expected %d, got %d", tt.expected, result)
+            }
+        })
+    }
 }
 EOL
 cat <<EOL > "${DIR}/part1.go"
@@ -95,5 +101,24 @@ EOL
 touch "${DIR}/input1.txt"
 touch "${DIR}/input2.txt"
 touch "${DIR}/test1.txt"
+touch "${DIR}/test2.txt"
+
+# Add the import statement
+IMPORT_STATEMENT="\"adventofcode/2024/day$DAY\""
+
+sed -i "/^)$/i \    $IMPORT_STATEMENT" solution.go
+# Add the lines to the Solution() function
+NEW_LINES=$(cat <<EOL
+    fmt.Println("  Day $DAY")\\
+    fmt.Println("    Part 1: ", day$DAY.Part1(read_input($1, 1)))\\
+    fmt.Println("    Part 2: ", day$DAY.Part2(read_input($1, 2)))
+EOL
+)
+
+# Insert the new lines before the closing brace of the Solution() function
+line_number=$(grep -n "fmt.Println(\"    Part 2: \", day$PREV_DAY.Part2" solution.go | cut -d: -f1)
+sed -i "${line_number}a\\$NEW_LINES" solution.go
+# sed -i "/fmt.Println\(\"\ \ \ \ Part\ 2:\ \",\ day$PREV_DAY./a\ \    $NEW_LINES" solution.go
+
 
 echo -e "${GREEN}Directory and files for day${DAY} created successfully.${NC}"

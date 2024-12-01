@@ -2,9 +2,11 @@ package day01
 
 import (
 	"testing"
+	"adventofcode/utils"
 )
 
 func TestPart1(t *testing.T) {
+	ex1, _ := utils.ReadFile("test1.txt")
 	tests := []struct {
 		name    string
 		input []string
@@ -17,7 +19,7 @@ func TestPart1(t *testing.T) {
 		},
 		{
 			name:	 "day1 example",
-			input:    []string{"1abc2", "pqr3stu8vwx", "a1b2c3d4e5f", "treb7uchet"},
+			input:    ex1,
 			expected: 142,
 		},
 	}
@@ -33,6 +35,7 @@ func TestPart1(t *testing.T) {
 }
 
 func TestPart2(t *testing.T) {
+	ex2, _ := utils.ReadFile("test2.txt")
 	tests := []struct {
 		name    string
 		input []string
@@ -45,7 +48,7 @@ func TestPart2(t *testing.T) {
 		},
 		{
 			name:	 "day1 example",
-			input:    []string{"two1nine", "eightwothree", "abcone2threexyz", "xtwone3four", "4nineeightseven2", "zoneight234", "7pqrstsixteen" },
+			input:    ex2,
 			expected: 281,
 		},
 		{
