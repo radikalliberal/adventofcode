@@ -16,7 +16,7 @@ func TestPart1(t *testing.T) {
         {
             name:     "part 1 example",
             input:     ex1,
-            expected: 1,
+            expected: 2,
         },
     }
     for _, tt := range tests {
@@ -39,7 +39,7 @@ func TestPart2(t *testing.T) {
         {
             name:     "part 2 example",
             input:    ex2,
-            expected: 1,
+            expected: 4,
         },
     }
     for _, tt := range tests {
@@ -49,5 +49,19 @@ func TestPart2(t *testing.T) {
                 t.Errorf("Expected %d, got %d", tt.expected, result)
             }
         })
+    }
+}
+
+func BenchmarkPart1(b *testing.B) {
+    input, _ := utils.ReadFile("input1.txt")
+    for n := 0; n < b.N; n++ {
+        Part1(input)
+    }
+}
+
+func BenchmarkPart2(b *testing.B) {
+    input, _ := utils.ReadFile("input2.txt")
+    for n := 0; n < b.N; n++ {
+        Part2(input)
     }
 }

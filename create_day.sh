@@ -76,6 +76,20 @@ func TestPart2(t *testing.T) {
         })
     }
 }
+
+func BenchmarkPart1(b *testing.B) {
+    input, _ := utils.ReadFile("input1.txt")
+    for n := 0; n < b.N; n++ {
+        Part1(input)
+    }
+}
+
+func BenchmarkPart2(b *testing.B) {
+    input, _ := utils.ReadFile("input2.txt")
+    for n := 0; n < b.N; n++ {
+        Part2(input)
+    }
+}
 EOL
 cat <<EOL > "${DIR}/part1.go"
 // part1.go
