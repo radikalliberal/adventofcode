@@ -1,5 +1,5 @@
-// day01_test.go
-package day01
+// day03_test.go
+package day03
 
 import (
     "testing"
@@ -16,12 +16,7 @@ func TestPart1(t *testing.T) {
         {
             name:     "part 1 example",
             input:     ex1,
-            expected: 11,
-        },
-        {
-            name:     "min ex",
-            input:    []string{"0   2"},
-            expected: 2,
+            expected: 161,
         },
     }
     for _, tt := range tests {
@@ -36,6 +31,7 @@ func TestPart1(t *testing.T) {
 
 func TestPart2(t *testing.T) {
     ex2, _ := utils.ReadFile("test2.txt")
+    inp2, _ := utils.ReadFile("input2.txt")
     tests := []struct {
         name    string
         input []string
@@ -44,7 +40,17 @@ func TestPart2(t *testing.T) {
         {
             name:     "part 2 example",
             input:    ex2,
-            expected: 31,
+            expected: 48,
+        },
+        {
+            name:     "dont",
+            input:    []string{ "don't()'{+;when() ]mul(804,327)?@when()how()+from()mul(731,16)}when(632,481)^ mul(841,888)~:?{[<$+don't()'<&why()mul(668,253)mul(955,947) ' ^(*mul(227,561))^;*{ ,(mul(164,251)# (from()from(31,113)+]when(){mul(45,21)select()mul(180,486);: ?}from()/mul(411,320) ~{-when()){/+-mul(142,258)mul(895,918)#;#:mul(436,950)-{*what()where()select():mul(512,382)~#from(563,273)mul(180,971)(,mul(914,983)#who(){)where(773,354)mul(86,529)select()?$!:-mul(469,419)what()-!+why()#,&]mul(531,80)what()where()!where()" },
+            expected: 0,
+        },
+        {
+            name:     "part 2 input",
+            input:    inp2,
+            expected: 80570939,
         },
     }
     for _, tt := range tests {
