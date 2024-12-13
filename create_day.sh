@@ -15,7 +15,7 @@ fi
 
 # Pad the day number with a leading zero if necessary
 DAY=$(printf "%02d" "$1")
-PREV_DAY=$(printf "%02d" "$((DAY-1))")
+PREV_DAY=$(printf "%02d" "$(($1-1))")
 
 # Create the directory
 DIR="day${DAY}"

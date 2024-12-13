@@ -9,6 +9,7 @@ import (
     "adventofcode/2024/day05"
     "adventofcode/2024/day06"
     "adventofcode/2024/day07"
+    "adventofcode/2024/day08"
 )
 
 func read_input(day int, part int) []string {
@@ -45,6 +46,9 @@ func Solution() {
     fmt.Println("  Day 07")
     fmt.Println("    Part 1: ", day07.Part1(read_input(7, 1)))
     fmt.Println("    Part 2: ", day07.Part2(read_input(7, 2)))
+    fmt.Println("  Day 08")
+    fmt.Println("    Part 1: ", day08.Part1(read_input(8, 1)))
+    fmt.Println("    Part 2: ", day08.Part2(read_input(8, 2)))
 }
 
 
