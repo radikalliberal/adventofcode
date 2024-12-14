@@ -123,9 +123,10 @@ IMPORT_STATEMENT="\"adventofcode/2024/day$DAY\""
 sed -i "/^)$/i \    $IMPORT_STATEMENT" solution.go
 # Add the lines to the Solution() function
 NEW_LINES=$(cat <<EOL
-    fmt.Println("  Day $DAY")\\
-    fmt.Println("    Part 1: ", day$DAY.Part1(read_input($1, 1)))\\
-    fmt.Println("    Part 2: ", day$DAY.Part2(read_input($1, 2)))
+    case $DAY:\\
+        fmt.Println("  Day $DAY")\\
+        fmt.Println("    Part 1: ", day$DAY.Part1(read_input($1, 1)))\\
+        fmt.Println("    Part 2: ", day$DAY.Part2(read_input($1, 2)))
 EOL
 )
 
