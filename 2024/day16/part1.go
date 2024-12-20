@@ -2,7 +2,7 @@
 package day16
 
 import (
-    "fmt"
+    // "fmt"
     "container/heap"
 )
 
@@ -233,9 +233,9 @@ func (m *Map) ComputeMaze() {
         rd = *(item.r)
         // rd.PrintPath()
         iteration++
-        if iteration > 10000 && iteration % 1000 == 0 {
-            fmt.Println("Iteration", iteration, "Queue size", len(pq), "Score", item.priority)
-        }
+        // if iteration > 10000 && iteration % 1000 == 0 {
+        //     fmt.Println("Iteration", iteration, "Queue size", len(pq), "Score", item.priority)
+        // }
     }
     m.r = *(item.r)
     m.r.PrintPath()

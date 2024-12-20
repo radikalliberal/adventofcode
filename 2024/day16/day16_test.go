@@ -36,7 +36,8 @@ func TestPart1(t *testing.T) {
 }
 
 func TestPart2(t *testing.T) {
-    ex2, _ := utils.ReadFile("test2.txt")
+    ex2, _ := utils.ReadFile("test1.txt")
+    ex2_1, _ := utils.ReadFile("test1_1.txt")
     tests := []struct {
         name    string
         input []string
@@ -45,7 +46,12 @@ func TestPart2(t *testing.T) {
         {
             name:     "part 2 example",
             input:    ex2,
-            expected: 1,
+            expected: 45,
+        },
+        {
+            name:     "part 2 example",
+            input:    ex2_1,
+            expected: 64,
         },
     }
     for _, tt := range tests {
