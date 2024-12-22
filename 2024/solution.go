@@ -19,6 +19,7 @@ import (
     "adventofcode/2024/day14"
     "adventofcode/2024/day15"
     "adventofcode/2024/day16"
+    "adventofcode/2024/day17"
 )
 
 func read_input(day int, part int) []string {
@@ -108,6 +109,10 @@ func Solution(day int) {
             fmt.Println("  Day 16")
             fmt.Println("    Part 1: ", day16.Part1(read_input(16, 1)))
             fmt.Println("    Part 2: ", day16.Part2(read_input(16, 2)))
+        case 17:
+            fmt.Println("  Day 17")
+            fmt.Println("    Part 1: ", day17.Part1(read_input(17, 1)))
+            fmt.Println("    Part 2: ", day17.Part2(read_input(17, 2)))
         default:
             fmt.Println("  Day ", day, " not implemented")
 
