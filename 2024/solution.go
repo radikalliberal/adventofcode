@@ -1,5 +1,7 @@
 package main
 import (
+    "os"
+    "log/slog"
     "fmt"
     "flag"
     "adventofcode/utils"
@@ -20,6 +22,8 @@ import (
     "adventofcode/2024/day15"
     "adventofcode/2024/day16"
     "adventofcode/2024/day17"
+    "adventofcode/2024/day18"
+    "adventofcode/2024/day19"
 )
 
 func read_input(day int, part int) []string {
@@ -113,6 +117,14 @@ func Solution(day int) {
             fmt.Println("  Day 17")
             fmt.Println("    Part 1: ", day17.Part1(read_input(17, 1)))
             fmt.Println("    Part 2: ", day17.Part2(read_input(17, 2)))
+        case 18:
+            fmt.Println("  Day 18")
+            fmt.Println("    Part 1: ", day18.Part1(read_input(18, 1)))
+            fmt.Println("    Part 2: ", day18.Part2(read_input(18, 2)))
+        case 19:
+            fmt.Println("  Day 19")
+            fmt.Println("    Part 1: ", day19.Part1(read_input(19, 1)))
+            fmt.Println("    Part 2: ", day19.Part2(read_input(19, 2)))
         default:
             fmt.Println("  Day ", day, " not implemented")
 
@@ -122,6 +134,25 @@ func Solution(day int) {
 
 func main() {
     pDay := flag.Int("day", 0, "Day to run")
+    pLogLevel := flag.String("loglevel", "INFO", "Log level")
     flag.Parse()
+    lvl := new(slog.LevelVar)
+    switch *pLogLevel {
+        case "DEBUG":
+            lvl.Set(slog.LevelDebug)
+        case "INFO":
+            lvl.Set(slog.LevelInfo)
+        case "WARN":
+            lvl.Set(slog.LevelWarn)
+        case "ERROR":
+            lvl.Set(slog.LevelError)
+        default:
+            lvl.Set(slog.LevelInfo)
+    }
+
+    logger := slog.New(slog.NewTextHandler(os.Stderr, &slog.HandlerOptions{
+        Level: lvl,
+    }))
+    slog.SetDefault(logger)
     Solution(*pDay)
 }
